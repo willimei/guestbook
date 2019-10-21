@@ -22,6 +22,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.AssertTrue;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.util.Assert;
 
 /**
@@ -37,6 +38,7 @@ class GuestbookEntry {
 	private @Id @GeneratedValue Long id;
 	private final String name, email, text;
 	private final LocalDateTime date;
+	private EmailValidator emailValidator = EmailValidator.getInstance();
 
 	/**
 	 * Creates a new {@link GuestbookEntry} for the given name and text.
@@ -49,6 +51,7 @@ class GuestbookEntry {
 		Assert.hasText(name, "Name must not be null or empty!");
 		Assert.hasText(email, "Email must not be null or empty!");
 		Assert.hasText(text, "Text must not be null or empty!");
+		Assert.isTrue(emailValidator.isValid(email), "Email must be valid");
 
 		this.name = name;
 		this.email = email;

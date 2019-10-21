@@ -15,6 +15,7 @@
  */
 package guestbook;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -30,7 +31,7 @@ import javax.validation.constraints.NotBlank;
 class GuestbookForm {
 
 	private final @NotBlank String name;
-	private final @NotBlank String email;
+	private final @NotBlank @Email String email;
 	private final @NotBlank String text;
 
 	/**
